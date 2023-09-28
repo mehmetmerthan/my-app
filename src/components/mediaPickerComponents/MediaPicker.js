@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Image, View, Text, StyleSheet   } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { uploadMedia } from './MediaUploader';
+import { Auth } from 'aws-amplify';
 
 export default function MediaPicker() {
   const [image, setImage] = useState(null);
@@ -36,8 +37,8 @@ export default function MediaPicker() {
   };
 
   const GetUSerInfo = async () => {
-    const userId = (await Auth.currentUserInfo());
-    console.log(userId);
+    const userId = (await Auth.currentAuthenticatedUser());
+    console.log(userId.attributes.sub);
   }
 
   return (

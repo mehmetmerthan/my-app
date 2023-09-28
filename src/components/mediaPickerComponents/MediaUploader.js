@@ -1,5 +1,5 @@
 import { Storage } from "@aws-amplify/storage";
-import { Auth } from 'aws-amplify';
+
 
 export async function uploadMedia(uri, setMessage) {
   try {
@@ -9,8 +9,6 @@ export async function uploadMedia(uri, setMessage) {
     await Storage.put(key, blob, {
       contentType: blob.type,
     });
-    const userId = (await Auth.currentUserInfo());
-    console.log(userId);
     setMessage('Success!');
   } catch (err) {
     console.log('Error uploading file:', err);
