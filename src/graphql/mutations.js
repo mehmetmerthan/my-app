@@ -1,75 +1,84 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
+export const createInstrumentTag = /* GraphQL */ `
+  mutation CreateInstrumentTag(
+    $input: CreateInstrumentTagInput!
+    $condition: ModelInstrumentTagConditionInput
   ) {
-    createPost(input: $input, condition: $condition) {
+    createInstrumentTag(input: $input, condition: $condition) {
       id
-      title
-      content_key
-      content
-      userID
-      User {
-        id
-        name
-        pp_key
-        createdAt
-        updatedAt
-        __typename
-      }
+      name
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
+export const updateInstrumentTag = /* GraphQL */ `
+  mutation UpdateInstrumentTag(
+    $input: UpdateInstrumentTagInput!
+    $condition: ModelInstrumentTagConditionInput
   ) {
-    updatePost(input: $input, condition: $condition) {
+    updateInstrumentTag(input: $input, condition: $condition) {
       id
-      title
-      content_key
-      content
-      userID
-      User {
-        id
-        name
-        pp_key
-        createdAt
-        updatedAt
-        __typename
-      }
+      name
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
+export const deleteInstrumentTag = /* GraphQL */ `
+  mutation DeleteInstrumentTag(
+    $input: DeleteInstrumentTagInput!
+    $condition: ModelInstrumentTagConditionInput
   ) {
-    deletePost(input: $input, condition: $condition) {
+    deleteInstrumentTag(input: $input, condition: $condition) {
       id
-      title
-      content_key
-      content
-      userID
-      User {
-        id
-        name
-        pp_key
-        createdAt
-        updatedAt
-        __typename
-      }
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createStyleTag = /* GraphQL */ `
+  mutation CreateStyleTag(
+    $input: CreateStyleTagInput!
+    $condition: ModelStyleTagConditionInput
+  ) {
+    createStyleTag(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateStyleTag = /* GraphQL */ `
+  mutation UpdateStyleTag(
+    $input: UpdateStyleTagInput!
+    $condition: ModelStyleTagConditionInput
+  ) {
+    updateStyleTag(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteStyleTag = /* GraphQL */ `
+  mutation DeleteStyleTag(
+    $input: DeleteStyleTagInput!
+    $condition: ModelStyleTagConditionInput
+  ) {
+    deleteStyleTag(input: $input, condition: $condition) {
+      id
+      name
       createdAt
       updatedAt
       __typename
@@ -84,11 +93,6 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
-      pp_key
-      Posts {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -103,11 +107,6 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
-      pp_key
-      Posts {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -122,11 +121,6 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
-      pp_key
-      Posts {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename

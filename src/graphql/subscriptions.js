@@ -1,66 +1,72 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost($filter: ModelSubscriptionPostFilterInput) {
-    onCreatePost(filter: $filter) {
+export const onCreateInstrumentTag = /* GraphQL */ `
+  subscription OnCreateInstrumentTag(
+    $filter: ModelSubscriptionInstrumentTagFilterInput
+  ) {
+    onCreateInstrumentTag(filter: $filter) {
       id
-      title
-      content_key
-      content
-      userID
-      User {
-        id
-        name
-        pp_key
-        createdAt
-        updatedAt
-        __typename
-      }
+      name
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost($filter: ModelSubscriptionPostFilterInput) {
-    onUpdatePost(filter: $filter) {
+export const onUpdateInstrumentTag = /* GraphQL */ `
+  subscription OnUpdateInstrumentTag(
+    $filter: ModelSubscriptionInstrumentTagFilterInput
+  ) {
+    onUpdateInstrumentTag(filter: $filter) {
       id
-      title
-      content_key
-      content
-      userID
-      User {
-        id
-        name
-        pp_key
-        createdAt
-        updatedAt
-        __typename
-      }
+      name
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost($filter: ModelSubscriptionPostFilterInput) {
-    onDeletePost(filter: $filter) {
+export const onDeleteInstrumentTag = /* GraphQL */ `
+  subscription OnDeleteInstrumentTag(
+    $filter: ModelSubscriptionInstrumentTagFilterInput
+  ) {
+    onDeleteInstrumentTag(filter: $filter) {
       id
-      title
-      content_key
-      content
-      userID
-      User {
-        id
-        name
-        pp_key
-        createdAt
-        updatedAt
-        __typename
-      }
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateStyleTag = /* GraphQL */ `
+  subscription OnCreateStyleTag($filter: ModelSubscriptionStyleTagFilterInput) {
+    onCreateStyleTag(filter: $filter) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateStyleTag = /* GraphQL */ `
+  subscription OnUpdateStyleTag($filter: ModelSubscriptionStyleTagFilterInput) {
+    onUpdateStyleTag(filter: $filter) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteStyleTag = /* GraphQL */ `
+  subscription OnDeleteStyleTag($filter: ModelSubscriptionStyleTagFilterInput) {
+    onDeleteStyleTag(filter: $filter) {
+      id
+      name
       createdAt
       updatedAt
       __typename
@@ -72,11 +78,6 @@ export const onCreateUser = /* GraphQL */ `
     onCreateUser(filter: $filter) {
       id
       name
-      pp_key
-      Posts {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -88,11 +89,6 @@ export const onUpdateUser = /* GraphQL */ `
     onUpdateUser(filter: $filter) {
       id
       name
-      pp_key
-      Posts {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -104,11 +100,6 @@ export const onDeleteUser = /* GraphQL */ `
     onDeleteUser(filter: $filter) {
       id
       name
-      pp_key
-      Posts {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename

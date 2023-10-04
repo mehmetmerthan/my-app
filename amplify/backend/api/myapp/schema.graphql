@@ -1,16 +1,15 @@
-type Post @model @auth(rules: [{allow: public}]) {
+type InstrumentTag @model @auth(rules: [{allow: public}]) {
   id: ID!
-  title: String
-  content_key: String
-  content: String
-  userID: ID! @index(name: "byUser")
-  User: User @belongsTo(fields: ["userID"])
+  name: [String]
+}
+
+type StyleTag @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: [String]
 }
 
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
-  pp_key: String
-  Posts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
 }
  

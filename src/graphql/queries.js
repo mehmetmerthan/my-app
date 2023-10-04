@@ -1,41 +1,27 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
+export const getInstrumentTag = /* GraphQL */ `
+  query GetInstrumentTag($id: ID!) {
+    getInstrumentTag(id: $id) {
       id
-      title
-      content_key
-      content
-      userID
-      User {
-        id
-        name
-        pp_key
-        createdAt
-        updatedAt
-        __typename
-      }
+      name
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listInstrumentTags = /* GraphQL */ `
+  query ListInstrumentTags(
+    $filter: ModelInstrumentTagFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listInstrumentTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        content_key
-        content
-        userID
+        name
         createdAt
         updatedAt
         __typename
@@ -45,27 +31,27 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const postsByUserID = /* GraphQL */ `
-  query PostsByUserID(
-    $userID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelPostFilterInput
+export const getStyleTag = /* GraphQL */ `
+  query GetStyleTag($id: ID!) {
+    getStyleTag(id: $id) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listStyleTags = /* GraphQL */ `
+  query ListStyleTags(
+    $filter: ModelStyleTagFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    postsByUserID(
-      userID: $userID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listStyleTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        content_key
-        content
-        userID
+        name
         createdAt
         updatedAt
         __typename
@@ -80,11 +66,6 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       name
-      pp_key
-      Posts {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -101,7 +82,6 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         name
-        pp_key
         createdAt
         updatedAt
         __typename

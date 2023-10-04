@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Button, Image, View, Text, StyleSheet   } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import { uploadMedia } from './MediaUploader';
-import { Auth } from 'aws-amplify';
+import React, { useState, useEffect } from "react";
+import { Button, Image, View, Text, StyleSheet } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { uploadMedia } from "./MediaUploader";
+import { Auth } from "aws-amplify";
 
 export default function MediaPicker() {
+
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState(null);
 
@@ -18,7 +19,7 @@ export default function MediaPicker() {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
-      uploadMedia(result.assets[0].uri, setMessage); 
+      uploadMedia(result.assets[0].uri, setMessage);
     }
   };
 
@@ -32,14 +33,14 @@ export default function MediaPicker() {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
-      uploadMedia(result.assets[0].uri, setMessage); 
+      uploadMedia(result.assets[0].uri, setMessage);
     }
   };
 
   const GetUSerInfo = async () => {
-    const userId = (await Auth.currentAuthenticatedUser());
+    const userId = await Auth.currentAuthenticatedUser();
     console.log(userId.attributes.sub);
-  }
+  };
 
   return (
     <View style={styles.View}>
@@ -47,7 +48,9 @@ export default function MediaPicker() {
       <View style={styles.buttonSpacing}></View>
       <Button title="Pick a image from gallery" onPress={pickImage} />
       <View style={styles.buttonSpacing}></View>
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      {image && (
+        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+      )}
       <View style={styles.buttonSpacing}></View>
       {message && <Text>{message}</Text>}
       <Button title="Get Info" onPress={GetUSerInfo} />
@@ -56,14 +59,13 @@ export default function MediaPicker() {
   );
 }
 
-
 const styles = StyleSheet.create({
   buttonSpacing: {
     marginTop: 50,
   },
   View: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
