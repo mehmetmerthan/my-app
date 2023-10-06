@@ -1,6 +1,87 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createPost = /* GraphQL */ `
+  mutation CreatePost(
+    $input: CreatePostInput!
+    $condition: ModelPostConditionInput
+  ) {
+    createPost(input: $input, condition: $condition) {
+      id
+      owner_name
+      title
+      image_key
+      video_key
+      User {
+        id
+        name
+        pp_key
+        createdAt
+        updatedAt
+        __typename
+      }
+      userID
+      tags
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updatePost = /* GraphQL */ `
+  mutation UpdatePost(
+    $input: UpdatePostInput!
+    $condition: ModelPostConditionInput
+  ) {
+    updatePost(input: $input, condition: $condition) {
+      id
+      owner_name
+      title
+      image_key
+      video_key
+      User {
+        id
+        name
+        pp_key
+        createdAt
+        updatedAt
+        __typename
+      }
+      userID
+      tags
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deletePost = /* GraphQL */ `
+  mutation DeletePost(
+    $input: DeletePostInput!
+    $condition: ModelPostConditionInput
+  ) {
+    deletePost(input: $input, condition: $condition) {
+      id
+      owner_name
+      title
+      image_key
+      video_key
+      User {
+        id
+        name
+        pp_key
+        createdAt
+        updatedAt
+        __typename
+      }
+      userID
+      tags
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createInstrumentTag = /* GraphQL */ `
   mutation CreateInstrumentTag(
     $input: CreateInstrumentTagInput!
@@ -93,6 +174,11 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
+      Posts {
+        nextToken
+        __typename
+      }
+      pp_key
       createdAt
       updatedAt
       __typename
@@ -107,6 +193,11 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
+      Posts {
+        nextToken
+        __typename
+      }
+      pp_key
       createdAt
       updatedAt
       __typename
@@ -121,6 +212,11 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
+      Posts {
+        nextToken
+        __typename
+      }
+      pp_key
       createdAt
       updatedAt
       __typename

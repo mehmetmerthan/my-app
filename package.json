@@ -20,6 +20,8 @@
     "amazon-cognito-identity-js": "^6.3.6",
     "aws-amplify": "^5.3.11",
     "expo": "~49.0.11",
+    "expo-av": "~13.4.1",
+    "expo-image": "~1.3.4",
     "expo-image-picker": "~14.3.2",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",

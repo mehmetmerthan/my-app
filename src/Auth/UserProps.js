@@ -1,60 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { API, graphqlOperation } from "aws-amplify";
-import { listStyleTags, listInstrumentTags } from "../graphql/queries";
 import { Button } from "react-native";
 import Router from "../Routers/Router";
 import styles from "./PropsStyle";
+import { GetTags } from "../Utils/TagUtils/GetTags";
 
 const UserProps = () => {
-  const [styleTags, setStyleTags] = useState([]);
-  const [instrumentTags, setInstrumentTags] = useState([]);
   const [selectedStyleTagsText, setSelectedStyleTagsText] = useState("");
   const [selectedInstrumentTagsText, setSelectedInstrumentTagsText] =
     useState("");
 
-  useEffect(() => {
-    async function fetchStyleTags() {
-      try {
-        const response = await API.graphql(graphqlOperation(listStyleTags));
-        const styleTagData = response.data.listStyleTags.items;
-        const extractedStyleTags =
-          styleTagData.length > 0 ? styleTagData[0].name : [];
-        const formattedStyleTags = extractedStyleTags.map((tag, index) => ({
-          id: index + 1,
-          text: tag,
-          selected: false,
-        }));
-        setStyleTags(formattedStyleTags);
-      } catch (error) {
-        console.error("Stil etiketleri alma hatası:", error);
-      }
-    }
-
-    async function fetchInstrumentTags() {
-      try {
-        const response = await API.graphql(
-          graphqlOperation(listInstrumentTags)
-        );
-        const instrumentTagData = response.data.listInstrumentTags.items;
-        const extractedInstrumentTags =
-          instrumentTagData.length > 0 ? instrumentTagData[0].name : [];
-        const formattedInstrumentTags = extractedInstrumentTags.map(
-          (tag, index) => ({
-            id: index + 1,
-            text: tag,
-            selected: false,
-          })
-        );
-        setInstrumentTags(formattedInstrumentTags);
-      } catch (error) {
-        console.error("Enstrüman etiketleri alma hatası:", error);
-      }
-    }
-
-    fetchStyleTags();
-    fetchInstrumentTags();
-  }, []);
+  const { styleTags, instrumentTags, setStyleTags, setInstrumentTags } =
+    GetTags();
 
   const handleStyleTagPress = (styleTagId) => {
     const updatedStyleTags = styleTags.map((styleTag) =>
