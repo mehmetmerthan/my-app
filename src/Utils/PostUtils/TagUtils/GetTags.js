@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { listStyleTags, listInstrumentTags } from "../../graphql/queries";
+import { listStyleTags, listInstrumentTags } from "../../../graphql/queries";
 
 export default function GetTags() {
   const [styleTags, setStyleTags] = useState([]);

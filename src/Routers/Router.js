@@ -11,12 +11,9 @@ import DiscoverScreen from "../Screens/DiscoverScreen";
 import CreatePostScreen from "../Screens/CreatePostScreen";
 import NotificationScreen from "../Screens/NotificationScreen";
 import AdvertDetailScreen from "../Screens/AdvertDetailScreen";
-import MediaPicker from "../components/mediaComponents/mediaPickerComponents/MediaPicker";
-
 const Tab = createBottomTabNavigator();
-
 const HomeStack = createStackNavigator();
-
+const DiscoverStack = createStackNavigator();
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen
@@ -31,8 +28,6 @@ const HomeStackScreen = () => (
     />
   </HomeStack.Navigator>
 );
-const DiscoverStack = createStackNavigator();
-
 const DiscoverStackScreen = () => (
   <DiscoverStack.Navigator>
     <DiscoverStack.Screen
@@ -52,12 +47,11 @@ const DiscoverStackScreen = () => (
     />
   </DiscoverStack.Navigator>
 );
-
 const TabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen
       name="HomeStack"
-      component={CreatePostScreen}
+      component={HomeStackScreen}
       options={{
         tabBarLabel: "Home",
         tabBarIcon: ({ color, size }) => (

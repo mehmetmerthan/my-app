@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, Image, TextInput, TouchableOpacity,ScrollView } from "react-native";
 import { MediaPicker } from "../components/mediaComponents/mediaPickerComponents/MediaPicker";
 import VideoPlayer from "../components/mediaComponents/VideoPlayer";
-import GetTags from "../Utils/TagUtils/GetTags";
-
+import GetTags from "../Utils/PostUtils/TagUtils/GetTags";
+import CreatePoststyles  from "../Styles/CreatePostScreenStyles";
 export default function CreatePostScreen() {
+  const [postText, setPostText] = useState("");
+  const [selectedTags, setSelectedTags] = useState([]); 
   const {
     image,
     video,
@@ -13,58 +15,46 @@ export default function CreatePostScreen() {
     isUploading,
     isButton,
     uploadMedia,
-  } = MediaPicker();
-
-  const [postText, setPostText] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]); // Seçilen etiketleri tutacak state'i ekliyoruz
-
-  const { styleTags, instrumentTags } = GetTags(); // Etiketleri alıyoruz
-
+  } = MediaPicker(postText, selectedTags);
+  const { styleTags, instrumentTags } = GetTags(); 
   const addTag = (tag) => {
-    // Etiket eklemek için bir işlev tanımlıyoruz
     setSelectedTags([...selectedTags, tag]);
   };
-
   const removeTag = (tag) => {
-    // Seçili etiketi kaldırmak için bir işlev tanımlıyoruz
     setSelectedTags(selectedTags.filter((t) => t !== tag));
   };
   function writeTags() {
     console.log(selectedTags);
   }
   return (
-    <View style={styles.container}>
-      {/* Medya Seçme Butonları */}
-      <TouchableOpacity onPress={pickVideo} style={styles.mediaButton}>
-        <Text style={styles.buttonText}>Video Seç</Text>
+    <ScrollView style={CreatePoststyles.container}>
+      <TouchableOpacity onPress={pickVideo} style={CreatePoststyles.mediaButton}>
+        <Text style={CreatePoststyles.buttonText}>Video Seç</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={pickImage} style={styles.mediaButton}>
-        <Text style={styles.buttonText}>Fotoğraf Seç</Text>
+      <TouchableOpacity onPress={pickImage} style={CreatePoststyles.mediaButton}>
+        <Text style={CreatePoststyles.buttonText}>Fotoğraf Seç</Text>
       </TouchableOpacity>
 
-      {/* Seçilen Medya Gösterimi */}
-      {image && <Image source={{ uri: image }} style={styles.image} />}
-      {video && <VideoPlayer uri={video} style={styles.video} />}
+      {image && <Image source={{ uri: image }} style={CreatePoststyles.image} />}
+      {video && <VideoPlayer uri={video} style={CreatePoststyles.video} />}
 
-      {/* Etiket Girişi */}
       <TextInput
         placeholder="Bu paylaşım hakkında bir şeyler yazın..."
         onChangeText={(text) => setPostText(text)}
         value={postText}
-        style={styles.textInput}
+        style={CreatePoststyles.textInput}
         multiline
       />
 
-      <View style={styles.tagContainer}>
+      <View style={CreatePoststyles.tagContainer}>
         <Text>Tag Ekle:</Text>
-        {/* Stiller Etiketleri */}
         {styleTags.map((tag) => (
           <TouchableOpacity
             key={tag.id}
             style={[
-              styles.tag,
-              selectedTags.includes(tag.text) && styles.selectedTag,
+              CreatePoststyles.tag,
+              selectedTags.includes(tag.text) && CreatePoststyles.selectedTag,
             ]}
             onPress={() => {
               if (selectedTags.includes(tag.text)) {
@@ -78,13 +68,12 @@ export default function CreatePostScreen() {
           </TouchableOpacity>
         ))}
 
-        {/* Enstrüman Etiketleri */}
         {instrumentTags.map((tag) => (
           <TouchableOpacity
             key={tag.id}
             style={[
-              styles.tag,
-              selectedTags.includes(tag.text) && styles.selectedTag,
+              CreatePoststyles.tag,
+              selectedTags.includes(tag.text) && CreatePoststyles.selectedTag,
             ]}
             onPress={() => {
               if (selectedTags.includes(tag.text)) {
@@ -99,82 +88,11 @@ export default function CreatePostScreen() {
         ))}
       </View>
 
-      {/* Paylaş Butonu */}
       {isButton ? (
-        <TouchableOpacity onPress={writeTags} style={styles.shareButton}>
-          <Text style={styles.shareButtonText}>Paylaş</Text>
+        <TouchableOpacity onPress={writeTags} style={CreatePoststyles.shareButton}>
+          <Text style={CreatePoststyles.shareButtonText}>Paylaş</Text>
         </TouchableOpacity>
       ) : null}
-    </View>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: "#fff",
-  },
-  mediaButton: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#3498db",
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-  },
-  image: {
-    width: "100%",
-    height: 200,
-    resizeMode: "cover",
-    marginBottom: 16,
-  },
-  video: {
-    width: "100%",
-    height: 200,
-    marginBottom: 16,
-  },
-  textInput: {
-    fontSize: 16,
-    padding: 12,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 16,
-    textAlignVertical: "top",
-  },
-  tagContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  tag: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderWidth: 1,
-    borderRadius: 8,
-    marginHorizontal: 8,
-    marginVertical: 8,
-    marginBottom: 8, 
-  },
-  selectedTag: {
-    backgroundColor: "#3498db",
-    borderColor: "#3498db",
-  },
-  shareButton: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#2ecc71",
-    padding: 12,
-    borderRadius: 8,
-  },
-  shareButtonText: {
-    color: "#fff",
-    fontSize: 16,
-  },
-});

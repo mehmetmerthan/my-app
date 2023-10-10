@@ -1,24 +1,227 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment($filter: ModelSubscriptionCommentFilterInput) {
+    onCreateComment(filter: $filter) {
+      id
+      comment_content
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment($filter: ModelSubscriptionCommentFilterInput) {
+    onUpdateComment(filter: $filter) {
+      id
+      comment_content
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment($filter: ModelSubscriptionCommentFilterInput) {
+    onDeleteComment(filter: $filter) {
+      id
+      comment_content
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateLike = /* GraphQL */ `
+  subscription OnCreateLike($filter: ModelSubscriptionLikeFilterInput) {
+    onCreateLike(filter: $filter) {
+      id
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateLike = /* GraphQL */ `
+  subscription OnUpdateLike($filter: ModelSubscriptionLikeFilterInput) {
+    onUpdateLike(filter: $filter) {
+      id
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteLike = /* GraphQL */ `
+  subscription OnDeleteLike($filter: ModelSubscriptionLikeFilterInput) {
+    onDeleteLike(filter: $filter) {
+      id
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($filter: ModelSubscriptionPostFilterInput) {
     onCreatePost(filter: $filter) {
       id
-      owner_name
-      title
+      content
       image_key
       video_key
       User {
         id
         name
         pp_key
+        tags
         createdAt
         updatedAt
         __typename
       }
       userID
       tags
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -29,20 +232,28 @@ export const onUpdatePost = /* GraphQL */ `
   subscription OnUpdatePost($filter: ModelSubscriptionPostFilterInput) {
     onUpdatePost(filter: $filter) {
       id
-      owner_name
-      title
+      content
       image_key
       video_key
       User {
         id
         name
         pp_key
+        tags
         createdAt
         updatedAt
         __typename
       }
       userID
       tags
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -53,20 +264,28 @@ export const onDeletePost = /* GraphQL */ `
   subscription OnDeletePost($filter: ModelSubscriptionPostFilterInput) {
     onDeletePost(filter: $filter) {
       id
-      owner_name
-      title
+      content
       image_key
       video_key
       User {
         id
         name
         pp_key
+        tags
         createdAt
         updatedAt
         __typename
       }
       userID
       tags
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -155,6 +374,15 @@ export const onCreateUser = /* GraphQL */ `
         __typename
       }
       pp_key
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
+      tags
       createdAt
       updatedAt
       __typename
@@ -171,6 +399,15 @@ export const onUpdateUser = /* GraphQL */ `
         __typename
       }
       pp_key
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
+      tags
       createdAt
       updatedAt
       __typename
@@ -187,6 +424,15 @@ export const onDeleteUser = /* GraphQL */ `
         __typename
       }
       pp_key
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
+      tags
       createdAt
       updatedAt
       __typename

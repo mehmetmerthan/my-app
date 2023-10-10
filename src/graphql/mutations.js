@@ -1,6 +1,219 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    createComment(input: $input, condition: $condition) {
+      id
+      comment_content
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    updateComment(input: $input, condition: $condition) {
+      id
+      comment_content
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    deleteComment(input: $input, condition: $condition) {
+      id
+      comment_content
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createLike = /* GraphQL */ `
+  mutation CreateLike(
+    $input: CreateLikeInput!
+    $condition: ModelLikeConditionInput
+  ) {
+    createLike(input: $input, condition: $condition) {
+      id
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateLike = /* GraphQL */ `
+  mutation UpdateLike(
+    $input: UpdateLikeInput!
+    $condition: ModelLikeConditionInput
+  ) {
+    updateLike(input: $input, condition: $condition) {
+      id
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteLike = /* GraphQL */ `
+  mutation DeleteLike(
+    $input: DeleteLikeInput!
+    $condition: ModelLikeConditionInput
+  ) {
+    deleteLike(input: $input, condition: $condition) {
+      id
+      postID
+      userID
+      Post {
+        id
+        content
+        image_key
+        video_key
+        userID
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      User {
+        id
+        name
+        pp_key
+        tags
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!
@@ -8,20 +221,28 @@ export const createPost = /* GraphQL */ `
   ) {
     createPost(input: $input, condition: $condition) {
       id
-      owner_name
-      title
+      content
       image_key
       video_key
       User {
         id
         name
         pp_key
+        tags
         createdAt
         updatedAt
         __typename
       }
       userID
       tags
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -35,20 +256,28 @@ export const updatePost = /* GraphQL */ `
   ) {
     updatePost(input: $input, condition: $condition) {
       id
-      owner_name
-      title
+      content
       image_key
       video_key
       User {
         id
         name
         pp_key
+        tags
         createdAt
         updatedAt
         __typename
       }
       userID
       tags
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -62,20 +291,28 @@ export const deletePost = /* GraphQL */ `
   ) {
     deletePost(input: $input, condition: $condition) {
       id
-      owner_name
-      title
+      content
       image_key
       video_key
       User {
         id
         name
         pp_key
+        tags
         createdAt
         updatedAt
         __typename
       }
       userID
       tags
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -179,6 +416,15 @@ export const createUser = /* GraphQL */ `
         __typename
       }
       pp_key
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
+      tags
       createdAt
       updatedAt
       __typename
@@ -198,6 +444,15 @@ export const updateUser = /* GraphQL */ `
         __typename
       }
       pp_key
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
+      tags
       createdAt
       updatedAt
       __typename
@@ -217,6 +472,15 @@ export const deleteUser = /* GraphQL */ `
         __typename
       }
       pp_key
+      Likes {
+        nextToken
+        __typename
+      }
+      Comments {
+        nextToken
+        __typename
+      }
+      tags
       createdAt
       updatedAt
       __typename

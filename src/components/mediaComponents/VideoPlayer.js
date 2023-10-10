@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
-
+import styles from '../../Styles/VideoPlayerStyle';
 export default function VideoPlayer({uri}) {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
@@ -30,20 +30,3 @@ export default function VideoPlayer({uri}) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-  },
-  video: {
-    alignSelf: 'center',
-    width: 320,
-    height: 200,
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

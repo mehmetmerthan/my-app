@@ -1,22 +1,10 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { React } from "react";
-import MediaPicker from "../components/mediaComponents/mediaPickerComponents/MediaPicker";
-
+import ListPosts from "../components/postComponents/ListPosts";
 export default function HomeScreen() {
   return (
     <View>
-      <MediaPicker/>
+      <ListPosts/>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  MediaPicker: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

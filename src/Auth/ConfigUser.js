@@ -5,7 +5,7 @@ import { getUser } from "../graphql/queries";
 import UserProps from "./UserProps";
 import Router from "../Routers/Router";
 import { View, Text } from "react-native";
-
+import { GetUserId } from "../Utils/UserUtils/GetUserAttributes";
 export default function ConfigurationUser() {
   const [isDb, setDb] = React.useState(false);
   const [isProp, setProp] = React.useState(false);
@@ -14,10 +14,9 @@ export default function ConfigurationUser() {
   }, []);
   const checkState = async () => {
     try {
-      const { attributes } = await Auth.currentAuthenticatedUser();
-      if (attributes.sub) {
-        console.log("Success check state " + attributes.sub);
-        checkUser(attributes.sub);
+      const UserId= await GetUserId();
+      if (UserId) {
+        checkUser(UserId);
       }
     } catch (error) {
       console.log("Error to check state" + error);
@@ -25,14 +24,10 @@ export default function ConfigurationUser() {
   };
   const checkUser = async (userID) => {
     try {
-      console.log("user id yi yazırıyorum" + userID);
       const { data } = await API.graphql(
         graphqlOperation(getUser, { id: userID })
       );
-      console.log("data " + data);
-      console.log("data getuser" + data.getUser);
       if (data.getUser) {
-        console.log("User already exists in database");
         setDb(true);
       }
     } catch (error) {
@@ -45,9 +40,7 @@ export default function ConfigurationUser() {
       const input = {
         id: userId,
       };
-      console.log("inputu yazırıyorum" + input);
       await API.graphql(graphqlOperation(createUser, { input }));
-      console.log("Success create user to db.");
       setProp(true);
     } catch (error) {
       console.error("Error to user to db.", error);

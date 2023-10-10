@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { Button, View, Text, StyleSheet, Image } from "react-native";
+import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { UploadImageToStorage, UploadVideoToStorage } from "./MediaUploader";
 
-export const MediaPicker =() => {
+export const MediaPicker = ({ postText, selectedTags }) => {
   const [image, setImage] = useState(null);
   const [isImage, setIsImage] = useState(false);
   const [video, setVideo] = useState(null);
@@ -37,16 +36,22 @@ export const MediaPicker =() => {
     });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);     
+      setImage(result.assets[0].uri);
       setIsImage(true);
       setIsButton(true);
     }
   };
   const uploadMedia = async () => {
     if (isImage === true) {
-      UploadImageToStorage(setIsUploading, image);
+      UploadImageToStorage(setIsUploading, image, postText, selectedTags);
     } else {
-      UploadVideoToStorage(setIsUploading, image, video);
+      UploadVideoToStorage(
+        setIsUploading,
+        image,
+        postText,
+        selectedTags,
+        video
+      );
     }
   };
   return {
@@ -58,6 +63,4 @@ export const MediaPicker =() => {
     isButton,
     uploadMedia,
   };
-}
-
-
+};

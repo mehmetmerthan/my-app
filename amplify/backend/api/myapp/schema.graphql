@@ -1,12 +1,30 @@
+type Comment @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  comment_content: String
+  postID: ID! @index(name: "byPost")
+  userID: ID! @index(name: "byUser")
+  Post: Post @belongsTo(fields: ["postID"])
+  User: User @belongsTo(fields: ["userID"])
+}
+
+type Like @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  postID: ID! @index(name: "byPost")
+  userID: ID! @index(name: "byUser")
+  Post: Post @belongsTo(fields: ["postID"])
+  User: User @belongsTo(fields: ["userID"])
+}
+
 type Post @model @auth(rules: [{allow: public}]) {
   id: ID!
-  owner_name: String
-  title: String
+  content: String
   image_key: String
   video_key: String
   User: User @belongsTo(fields: ["userID"])
   userID: ID! @index(name: "byUser")
   tags: [String]
+  Likes: [Like] @hasMany(indexName: "byPost", fields: ["id"])
+  Comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
 }
 
 type InstrumentTag @model @auth(rules: [{allow: public}]) {
@@ -24,5 +42,8 @@ type User @model @auth(rules: [{allow: public}]) {
   name: String
   Posts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
   pp_key: String
+  Likes: [Like] @hasMany(indexName: "byUser", fields: ["id"])
+  Comments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
+  tags: [String]
 }
  

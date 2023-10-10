@@ -2,7 +2,12 @@ import { Storage } from "@aws-amplify/storage";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import { createPost } from "../../../graphql/mutations";
 
-async function UploadImageToStorage(setIsUploading, image) {
+async function UploadImageToStorage(
+  setIsUploading,
+  image,
+  postText,
+  selectedTags
+) {
   try {
     setIsUploading(true);
     const uri = image;
@@ -12,13 +17,19 @@ async function UploadImageToStorage(setIsUploading, image) {
     await Storage.put(key, blob, {
       contentType: blob.type,
     });
-    SavePostToDb(key);
+    SavePostToDb(key, postText, selectedTags);
     setIsUploading(false);
   } catch (err) {
     console.log("Error uploading image to storage:", err);
   }
 }
-async function UploadVideoToStorage(setIsUploading, image, video) {
+async function UploadVideoToStorage(
+  setIsUploading,
+  image,
+  postText,
+  selectedTags,
+  video
+) {
   try {
     setIsUploading(true);
     const Uri = image;
@@ -34,22 +45,23 @@ async function UploadVideoToStorage(setIsUploading, image, video) {
     await Storage.put(videoKey, videoBlob, {
       contentType: videoBlob.type,
     });
-    SavePostToDb(Key, videoKey);
+    SavePostToDb(Key, videoKey, postText, selectedTags);
     setIsUploading(false);
   } catch (err) {
     console.log("Error uploading video to storage:", err);
   }
 }
-async function SavePostToDb(key, videoKey) {
+async function SavePostToDb(key, videoKey, postText, selectedTags) {
   const user = await Auth.currentAuthenticatedUser();
   const userSub = user.attributes.sub;
   const username = user.attributes.name;
   const post = {
-    title: "test",
+    title: postText,
     owner_name: username,
     image_key: key,
     video_key: videoKey,
     userID: userSub,
+    tags: selectedTags,
   };
   try {
     await API.graphql(graphqlOperation(createPost, { input: post }));

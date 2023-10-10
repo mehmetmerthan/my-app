@@ -1,10 +1,8 @@
+//import Router from "../Routers/Router";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { Button } from "react-native";
-import Router from "../Routers/Router";
-import styles from "./PropsStyle";
-import { GetTags } from "../Utils/TagUtils/GetTags";
-
+import styles from "../Styles/PropsStyle";
+import GetTags from "../Utils/PostUtils/TagUtils/GetTags";
 const UserProps = () => {
   const [selectedStyleTagsText, setSelectedStyleTagsText] = useState("");
   const [selectedInstrumentTagsText, setSelectedInstrumentTagsText] =
@@ -50,7 +48,6 @@ const UserProps = () => {
       `Seçilen Enstrüman Etiketleri: ${selectedInstrumentTagsText}`
     );
   };
-
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -98,11 +95,11 @@ const UserProps = () => {
           {selectedInstrumentTagsText}
         </Text>
       )}
-      <Button title="Finish" onPress={finish} />
     </View>
   );
-};
-function finish() {
-  return <Router />;
 }
+
+// function finish() {
+//   return <Router />;
+// }
 export default UserProps;
